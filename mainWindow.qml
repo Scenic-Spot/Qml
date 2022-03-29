@@ -30,7 +30,7 @@ Window {
     Map {
           anchors.fill: parent
           plugin: mapboxglPlugin
-          center: QtPositioning.coordinate(59.91, 10.75) // Oslo
+          center: QtPositioning.coordinate(39.9075, 116.3880) // 纬度 经度，换算成度为单位小数，天安门坐标
           zoomLevel: 14
           }
     CommonRect{
