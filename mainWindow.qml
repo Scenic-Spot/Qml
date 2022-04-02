@@ -125,5 +125,13 @@ Window {
         color: "Grey"
         height: parent.height/30
         opacity: 0.5
-}
+    }
+    SearchBox {
+        anchors {
+            left: parent.left
+            bottom: parent.bottom
+            leftMargin: 100
+            bottomMargin: 180       //？
+        }
+    }
 }
