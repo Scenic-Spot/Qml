@@ -5,3 +5,5 @@ mainWindow 里面有主窗口的样子，退出的时候可以按顶部的红色
 StatusButton 里面有状态栏的控件
 ## CommonRect.qml
 CommonRect 是通用的框框，统一了颜色，不透明度，圆角。由于水平有限，使用CommonRect指定大小时，**需要指定** `myHeight` , `myWidth` 来指定高度，宽度
+## SearchBox.qml
+SearchBox 包括了左下角搜索框的全部功能及实现，图标自行添加
