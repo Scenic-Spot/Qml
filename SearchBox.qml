@@ -5,12 +5,12 @@ Item {
         id: rec
         width: 80
         height: 80
-        color: "#80444444"  //父控件的透明度会被子控件继承，但是color属性不会，使用8位32进制颜色值，前两位代表透明度，半
+        color: "#80444444"  //父控件的透明度会被子控件继承，但是color属性不会，使用8位32进制颜色值，前两位代表透明度
         radius: 15
 
         Image {
             id: search
-            source: "search.png"
+            source: "search.png"       //增加图片
             anchors.fill: parent
             anchors.margins: 20
         }
