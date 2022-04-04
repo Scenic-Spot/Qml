@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>PathProgress.qml</file>
+        <file>main.qml</file>
+        <file>Images/close.png</file>
+        <file>Images/orientation.png</file>
+        <file>SearchBox.qml</file>
+        <file>StatusButton.qml</file>
+        <file>CommonRect.qml</file>
+        <file>Images/search.png</file>
+    </qresource>
+</RCC>

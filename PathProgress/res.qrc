@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/关闭.png</file>
+    </qresource>
+</RCC>
