@@ -1,5 +1,4 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
+import QtQuick 2.12
 import QtQuick.Controls 2.0
 import QtTest 1.0
 
@@ -32,6 +31,7 @@ Rectangle{
 
     function draw() {
         var angle= 0
+        var jiaodu = 0
         var lineLength = Math.sqrt(Math.pow(point1.x - point2.x, 2) + Math.pow(point1.y - point2.y, 2))
         line.x = point2.x
         line.y = point2.y
@@ -85,4 +85,3 @@ Rectangle{
     }
 
 }
-
