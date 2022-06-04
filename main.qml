@@ -19,22 +19,50 @@ Window {
 
     property double pathList_restCurrentDistance: _pathList.pathFirstRest_Distance()
     property string name: _pathList.getFirstPathName()
+    property point pointLeftUp: Qt.point(0,0)
+    property point pointRightUp: Qt.point(0,0)
+    property int add_x: 0
+    property int add_y: 0
+    property bool isVisibile: false
 
     Image{
         source: "qrc:/Images/map.jpg"
         anchors.centerIn: parent
     }
 
-    property point pointLeftUp: Qt.point(0,0)
-    property point pointRightUp: Qt.point(0,0)
+    Rectangle {
+            x: 297+add_x;
+            y: 130+add_y;
+            width: 20;
+            height: 20;
+            color: "blue";
+            radius: 100;
+            clip: true;
+            visible: isVisibile
+    }
 
-    Line{
-        id:line1
-        x:307
-        y:140
-        point1:pointLeftUp
-        point2:pointRightUp
-        lineWidth: 4
+    Item{
+        ListModel{
+            id:myModel
+        }
+
+        Component{
+            id:myDelegate
+            Line{
+                id:line
+                x:307
+                y:140
+                point1:Qt.point(x1,y1)
+                point2:Qt.point(x2,y2)
+                lineWidth: 4
+                lineColor: "red"
+            }
+        }
+
+        Repeater{
+            model:myModel
+            delegate: myDelegate
+        }
     }
 
     Timer{
@@ -189,13 +217,31 @@ Window {
         }
         function onPointLeftUpChanged()
         {
-            pointLeftUp=_pathList.getPointLeftUp();
+            isVisibile = false;
+            pointLeftUp=Qt.point(_pathList.getPointLeftUp().x,_pathList.getPointLeftUp().y);
+            pointRightUp = Qt.point(_pathList.getPointRightUp().x,_pathList.getPointRightUp().y);
+            var pointLeftUp2=pointLeftUp
+            var pointRightUp2=pointRightUp
+            myModel.append({x1:pointLeftUp2.x,y1:pointLeftUp2.y,x2:pointRightUp2.x,y2:pointRightUp2.y})
             console.log(pointLeftUp);
         }
         function onPointRightUpChanged()
         {
-            pointRightUp = _pathList.getPointRightUp();
+            isVisibile = false;
+            pointLeftUp=Qt.point(_pathList.getPointLeftUp().x,_pathList.getPointLeftUp().y);
+            pointRightUp = Qt.point(_pathList.getPointRightUp().x,_pathList.getPointRightUp().y);
+            var pointLeftUp2=pointLeftUp
+            var pointRightUp2=pointRightUp
+            myModel.append({x1:pointLeftUp2.x,y1:pointLeftUp2.y,x2:pointRightUp2.x,y2:pointRightUp2.y})
             console.log(pointRightUp)
+        }
+        function onIconChanged(){
+            myModel.clear();
+        }
+        function onSearchChanged(){
+            add_x = _pathList.getAdd_x();
+            add_y = _pathList.getAdd_y();
+            isVisibile = true;
         }
     }
 }

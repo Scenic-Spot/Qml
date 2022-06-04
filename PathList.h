@@ -66,6 +66,9 @@ public:
 
     Q_INVOKABLE QPoint getPointLeftUp();
     Q_INVOKABLE QPoint getPointRightUp();
+    Q_INVOKABLE int getAdd_x();
+    Q_INVOKABLE int getAdd_y();
+    Q_INVOKABLE void startSearch(int index);
 
     void setPointLeftUp(Position p);
     void setPointRightUp(Position p);
@@ -77,6 +80,8 @@ signals:
     void isVisibleChanged();
     void pointLeftUpChanged();
     void pointRightUpChanged();
+    void iconChanged();
+    void searchChanged();
 
 private:
     QQueue<Path*> m_paths;
@@ -87,6 +92,8 @@ private:
     Path* m_dest;
     bool isRunning;
     bool isVisible;
+    int m_x;
+    int m_y;
 };
 
 #endif // PATHLIST_H

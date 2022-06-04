@@ -19,7 +19,7 @@ PathList::PathList(QObject *parent)
     }
     for(int i=0;i<maxSize;i++){
         for(int j=0;j<maxSize;j++){
-            graph.edge[i][j].distance=inf;
+            graph.edge[i][j].distance=0;
         }
     }
     //嘉瑞新艺术仓库
@@ -219,6 +219,7 @@ void PathList::draw(){
 void PathList::startDijstra(int startIndex,int endIndex){
     m_paths.clear();
     m_path_vertex.clear();
+    emit iconChanged();
     vector<vector<double>>map(maxSize,vector<double>(maxSize,0));
     for(int i=0;i<maxSize;i++){
         for(int j=0;j<maxSize;j++){
@@ -248,10 +249,13 @@ void PathList::startDijstra(int startIndex,int endIndex){
 void PathList::startKrustal(){
     m_paths.clear();
     m_path_vertex.clear();
+    emit iconChanged();
     vector<vector<double>>map(maxSize,vector<double>(maxSize,INT32_MAX));
     for(int i=0;i<maxSize;i++){
         for(int j=0;j<maxSize;j++){
-            map[i][j]=graph.edge[i][j].distance;
+            if(graph.edge[i][j].distance!=0){
+                map[i][j]=graph.edge[i][j].distance;
+            }
         }
     }
     ret ret_tmp = mst(map);
@@ -267,4 +271,21 @@ void PathList::startKrustal(){
         m_path_vertex.enqueue(graph.vertex[(*it).b]);
         m_paths.enqueue(new Path(graph.vertex[(*it).b].name,graph.edge[(*it).a][(*it).b].distance));
     }
+}
+
+int PathList::getAdd_x(){
+    return m_x;
+}
+
+int PathList::getAdd_y(){
+    return m_y;
+}
+
+void PathList::startSearch(int index){
+    m_paths.clear();
+    m_path_vertex.clear();
+    emit iconChanged();
+    m_x = graph.vertex[index].position.x;
+    m_y = graph.vertex[index].position.y;
+    emit searchChanged();
 }

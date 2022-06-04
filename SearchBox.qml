@@ -88,8 +88,6 @@ Item {
                 font.bold: true
                 onClicked: {
                     _pathList.startKrustal(from.currentIndex,to.currentIndex)
-                    _pathList.setIsRunnig(true);
-                    _pathList.setIsVisible(true);
                     _pathList.draw();
                     stopanimation.running = true
                 }
@@ -121,6 +119,7 @@ Item {
                 font.pointSize: 15
                 font.bold: true
                 onClicked: {
+                    _pathList.startSearch(place.currentIndex)
                     stopanimation.running = true
                 }
                 anchors{
